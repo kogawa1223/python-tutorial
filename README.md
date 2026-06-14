@@ -1,5 +1,7 @@
 # Python Tutorial
 
+[![CI](https://github.com/kogawa1223/python-tutorial/actions/workflows/ci.yml/badge.svg)](https://github.com/kogawa1223/python-tutorial/actions/workflows/ci.yml)
+
 Python 公式チュートリアル（[The Python Tutorial](https://docs.python.org/3/tutorial/)）を章ごとに実装した学習リポジトリ。**コードを書く全章を実装済み**。
 
 各章は「公式の節立てに沿った関数 + `assert` による自己検証 + ラベル付き出力」で構成し、**読むだけで何を学んだかが分かる**ことを意図している。全章を回す pytest スモークテストつき。
