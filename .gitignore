@@ -1,0 +1,18 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# venv (uv)
+.venv/
+
+# OS
+.DS_Store
+
+# 章の実行で生成される一時ファイル
+*.tmp
+output.txt
+*.json.out
