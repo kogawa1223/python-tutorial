@@ -1,0 +1,10 @@
+[project]
+name = "python-tutorial"
+version = "0.1.0"
+description = "Python 公式チュートリアルを章ごとに実装する学習リポジトリ"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = []
+
+[dependency-groups]
+dev = ["pytest>=8.0"]
