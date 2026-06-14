@@ -1,30 +1,43 @@
 """ch12: Virtual Environments and Packages
 https://docs.python.org/3/tutorial/venv.html
 
-仮想環境と pip。操作中心の章なので、手順をコメントで残す。
+仮想環境と pip。操作中心の章なので手順をコメントで残し、
+コードでは「今どの Python・どの環境で動いているか」を確認する。
 このリポジトリ自体は uv で環境管理している（.python-version = 3.12）。
+
+標準ツールでの手順:
+    python -m venv .venv            # 仮想環境を作る
+    source .venv/bin/activate       # 有効化 (macOS/Linux)
+    deactivate                      # 無効化
+    pip install requests==2.31.0    # バージョン指定インストール
+    pip install --upgrade requests  # アップグレード
+    pip freeze > requirements.txt   # 依存を固定
+    pip install -r requirements.txt # 復元
+
+uv での同等手順:
+    uv venv / uv add requests / uv run python ...
 """
 
-# TODO: 12.1 はじめに（なぜ仮想環境が必要か：依存の分離）
-# TODO: 12.2 仮想環境の作成
-#   python -m venv .venv
-#   source .venv/bin/activate        # macOS/Linux
-#   deactivate
-#   参考: uv venv / uv run でも同等のことができる
-# TODO: 12.3 pip でパッケージ管理
-#   pip install package / pip install package==2.6.0
-#   pip install --upgrade package
-#   pip uninstall package
-#   pip show package / pip list / pip freeze > requirements.txt
-#   pip install -r requirements.txt
+from __future__ import annotations
+
+import sys
+
+
+def env_info() -> dict[str, object]:
+    """12.2 仮想環境の確認: sys.prefix が base_prefix と違えば venv 内。"""
+    in_venv = sys.prefix != sys.base_prefix
+    return {
+        "executable": sys.executable,
+        "version": sys.version.split()[0],
+        "in_virtualenv": in_venv,
+    }
 
 
 def main() -> None:
-    import sys
-
-    # 今動いている Python が仮想環境かを確認する
-    print("executable:", sys.executable)
-    print("prefix:", sys.prefix)
+    info = env_info()
+    for key, value in info.items():
+        print(f"{key:>14}: {value}")
+    assert info["version"].startswith("3.12")
 
 
 if __name__ == "__main__":
